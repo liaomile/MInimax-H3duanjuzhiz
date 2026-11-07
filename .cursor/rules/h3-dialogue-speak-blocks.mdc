@@ -1,0 +1,40 @@
+---
+description: 所有 MiniMax H3 短剧对白必须转成模型可解析的 (S1)+<d>[Chinese] 语法；禁止干 TTS 顶口型镜
+alwaysApply: true
+---
+
+# H3 对白转码铁律（任何短剧）
+
+## 必须记住
+
+1. **口型对白镜禁止后期干 TTS**（无环境、口型不配）。声音跟画面一起由 H3 出。
+2. **禁止**只写 `角色：「台词」` 或「对白如上」指望模型听懂。
+3. 人读剧本可留 `～？！……`；**进 H3 提示词前**必须转码。
+
+## 唯一合法开口语法
+
+```text
+LU YE (S1) asks softly, slow, rising tone: <d>[Chinese] 疼吗？</d>
+ZHAO MANG does not speak; lips closed. No other speaker IDs.
+overall_soundscape: boot thud, morning wind, distant crowd hush.
+non_diegetic_music: N/A
+```
+
+- `(S1)`：按本镜开口顺序，不是角色永久编号  
+- 语气/动词在标签**外**；`<d>` 内只有 `[Chinese]` + 清洗后逐字稿  
+- **一镜恰好 1 个 `<d>`**；第二人只反应、嘴唇闭合  
+- 标签内标点只用 `，。？！`；去掉 `～` `……` 装饰  
+- `overall_soundscape` 只写环境/动作/气息，**禁止**出现「对白/台词/voice/speech」  
+
+## 口型预算（CJK）
+
+约 `6s≤12` / `8s≤16` / `10s≤20`；超了拆镜，不塞同一个 `<d>`。
+
+## 工具
+
+```text
+D:\MInimax H3剧本创作\_tools\h3_dialogue_codec.py
+D:\MInimax H3剧本创作\00_H3对白转码铁律.md
+```
+
+写/改任何剧的 `V3_*提示词`、批量 gen 脚本时：对白走 codec；无对白镜写明 `No dialogue` / `lips closed`。
